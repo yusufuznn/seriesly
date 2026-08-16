@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 min-h-screen;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white border border-gray-200 rounded-lg overflow-hidden;
+  }
+
+  .poster-card {
+    @apply relative aspect-[2/3] overflow-hidden rounded bg-gray-50;
+  }
+
+  .poster-card img {
+    @apply w-full h-full object-cover transition-transform duration-300;
+  }
+
+  .poster-card:hover img {
+    @apply scale-105;
+  }
+
+  .btn-primary {
+    @apply bg-gray-900 hover:bg-black text-white font-medium px-5 py-2.5 rounded transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-gray-300 hover:bg-gray-50 text-gray-900 font-medium px-4 py-2 rounded transition-colors;
+  }
+
+  .input-field {
+    @apply w-full bg-white border border-gray-300 rounded px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-900 transition-colors;
+  }
+}
+
+/* Floating Posters */
+.floating-posters {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.floating-posters-left {
+  left: 0;
+}
+
+.floating-posters-right {
+  right: 0;
+}
+
+.poster-strip {
+  position: absolute;
+  width: 100%;
+  animation: scroll-vertical 30s linear infinite;
+}
+
+.poster-strip-reverse {
+  animation: scroll-vertical-reverse 35s linear infinite;
+}
+
+.poster-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/3;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.poster-item:hover {
+  opacity: 1;
+}
+
+.poster-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes scroll-vertical-reverse {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .floating-posters {
+    display: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
